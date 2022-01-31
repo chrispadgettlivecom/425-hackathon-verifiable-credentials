@@ -1,0 +1,38 @@
+{
+  "attestations": {
+    "idTokens": [
+      {
+        "mapping": {
+          "givenName": {
+            "claim": "given_name"
+          },
+          "familyName": {
+            "claim": "family_name"
+          },
+          "birthdate": {
+            "claim": "birthdate"
+          },
+          "documentNumber": {
+            "claim": "document_number",
+            "indexed": true
+          },
+          "dateOfIssuance": {
+            "claim": "date_of_issuance"
+          },
+          "dateOfExpiry": {
+            "claim": "date_of_expiry"
+          }
+        },
+        "configuration": "https://self-issued.me",
+        "client_id": "",
+        "redirect_uri": ""
+      }
+    ]
+  },
+  "validityInterval": 315360000,
+  "vc": {
+    "type": [
+      "KingdomOfZamundaPassport"
+    ]
+  }
+}

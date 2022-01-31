@@ -1,0 +1,46 @@
+{
+  "default": {
+    "locale": "en-US",
+    "card": {
+      "title": "Vaccination Certificate",
+      "issuedBy": "Kingdom of Zamunda",
+      "backgroundColor": "#319704",
+      "textColor": "#FFFFFF",
+      "logo": {
+        "uri": "https://zamundavcst.blob.core.windows.net/images/logo.png",
+        "description": "Kingdom of Zamunda"
+      },
+      "description": "Use your certificate to prove your vaccination."
+    },
+    "consent": {
+      "title": "Do you want to get your certificate from Kingdom of Zamunda?",
+      "instructions": "Sign in with your Kingdom of Zamunda account to get your certificate."
+    },
+    "claims": {
+      "vc.credentialSubject.givenName": {
+        "type": "String",
+        "label": "Given name"
+      },
+      "vc.credentialSubject.familyName": {
+        "type": "String",
+        "label": "Family name"
+      },
+      "vc.credentialSubject.birthdate": {
+        "type": "String",
+        "label": "Birthdate"
+      },
+      "vc.credentialSubject.personalNumber": {
+        "type": "String",
+        "label": "Personal number"
+      },
+      "vc.credentialSubject.vaccineName": {
+        "type": "String",
+        "label": "Vaccine name"
+      },
+      "vc.credentialSubject.dateOfVaccination": {
+        "type": "String",
+        "label": "Date of vaccination"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"] - Kingdom of Zamunda</title>
+</head>
+<body class="h-100 text-center">
+    <main class="h-100" role="main">
+        @RenderBody()
+    </main>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

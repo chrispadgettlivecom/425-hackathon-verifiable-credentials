@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Issuer";
+    Layout = "_Layout";
+}
+<div class="container h-100">
+    <div class="row h-100">
+        <div class="col-12 col-md-6 m-auto">
+            <div class="card">
+                <div class="card-body">
+                    <img class="mb-3" src="https://secure.aadcdn.microsoftonline-p.com/81d6b03a-p6xakk54qynf8w6xpw3kw6ppd56d1f0ilvai3d-ce8a/logintenantbranding/0/bannerlogo?ts=637706507170802213" alt="Kingdom of Zamunda">
+                    <h4 class="card-title">VaxPass Issuance</h4>
+                    <button id="sign-in-button" class="btn btn-primary" type="button">Issue credential</button>
+                    <div id="qr-code" style="display: none"></div>
+                    <div id="verification-code" style="display: none"></div>
+                    <div id="message" style="display: none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/qrcode.js"></script>
+    <script>
+        var qrCode = new QRCode(
+            'qr-code',
+            {
+                width: 300,
+                height: 300
+            });
+        var state = null;
+        $('#sign-in-button').on(
+            'click',
+            () => {
+                var signInButtonHtml = $('#sign-in-button').html();
+                $('#sign-in-button').html('Please wait...');
+                fetch('/api/issuer/issuance-request')
+                    .then(response => {
+                        response.text()
+                            .then(responseContent => {
+                                var responseModel = JSON.parse(responseContent);
+                                state = responseModel.state;
+                                $('#sign-in-button').html(signInButtonHtml).hide();
+                                if (/Android/i.test(navigator.userAgent)) {
+                                    window.location.href = responseModel.url;
+                                } else if (/iPhone/i.test(navigator.userAgent)) {
+                                    window.location.replace(responseModel.url);
+                                } else {
+                                    qrCode.makeCode(responseModel.url);
+                                    $('#qr-code').show();
+                                    if (responseModel.pinValue) {
+                                        $('#verification-code').html("Verification code: " + responseModel.pinValue)
+                                            .show();
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                $('#message').html(error).show();
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                        $('#sign-in-button').html(signInButtonHtml);
+                    });
+            });
+        var checkStatus = setInterval(
+            () => {
+                fetch('/api/issuer/issuance-response?state=' + state)
+                    .then(response => {
+                        response.text()
+                            .then(responseContent => {
+                                if (responseContent.length > 0) {
+                                    var responseModel = JSON.parse(responseContent);
+                                    if (responseModel.code == 'request_retrieved') {
+                                        $('#qr-code').hide();
+                                        $('#message').html(responseModel.message).show();
+                                    }
+                                    if (responseModel.code == 'issuance_successful') {
+                                        $('#verification-code').hide();
+                                        $('#message').html(responseModel.message).show();
+                                        clearInterval(checkStatus);
+                                    }
+                                    if (responseModel.code == 'issuance_error') {
+                                        $('#message')
+                                            .html(
+                                                'Did you enter your verification code? Please refresh this page and try again.')
+                                            .show();
+                                        clearInterval(checkStatus);
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                $('#message').html(error).show();
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    });
+            },
+            3000);
+    </script>
+}

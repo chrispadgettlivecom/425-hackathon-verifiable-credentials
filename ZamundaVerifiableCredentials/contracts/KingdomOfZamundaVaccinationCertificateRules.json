@@ -1,0 +1,38 @@
+{
+  "attestations": {
+    "idTokens": [
+      {
+        "mapping": {
+          "givenName": {
+            "claim": "given_name"
+          },
+          "familyName": {
+            "claim": "family_name"
+          },
+          "birthdate": {
+            "claim": "birthdate"
+          },
+          "personalNumber": {
+            "claim": "personal_number",
+            "indexed": true
+          },
+          "vaccineName": {
+            "claim": "vaccine_name"
+          },
+          "dateOfVaccination": {
+            "claim": "date_of_vaccination"
+          }
+        },
+        "configuration": "https://zamundavaxissapp.azurewebsites.net/.well-known/openid-configuration",
+        "client_id": "7b488272-2323-4d6e-a2dc-aad5fc77eb9d",
+        "redirect_uri": "vcclient://openid/"
+      }
+    ]
+  },
+  "validityInterval": 2592001,
+  "vc": {
+    "type": [
+      "KingdomOfZamundaVaccinationCertificate"
+    ]
+  }
+}

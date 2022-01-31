@@ -1,0 +1,46 @@
+{
+  "default": {
+    "locale": "en-US",
+    "card": {
+      "title": "Passport",
+      "issuedBy": "Kingdom of Zamunda",
+      "backgroundColor": "#319704",
+      "textColor": "#FFFFFF",
+      "logo": {
+        "uri": "https://zamundavcst.blob.core.windows.net/images/logo.png",
+        "description": "Kingdom of Zamunda"
+      },
+      "description": "Use your passport to prove your identity."
+    },
+    "consent": {
+      "title": "Do you want to get your passport from Kingdom of Zamunda?",
+      "instructions": "Sign in with your Kingdom of Zamunda account to get your passport."
+    },
+    "claims": {
+      "vc.credentialSubject.givenName": {
+        "type": "String",
+        "label": "Given name"
+      },
+      "vc.credentialSubject.familyName": {
+        "type": "String",
+        "label": "Family name"
+      },
+      "vc.credentialSubject.birthdate": {
+        "type": "String",
+        "label": "Birthdate"
+      },
+      "vc.credentialSubject.documentNumber": {
+        "type": "String",
+        "label": "Document number"
+      },
+      "vc.credentialSubject.dateOfIssuance": {
+        "type": "String",
+        "label": "Date of issuance"
+      },
+      "vc.credentialSubject.dateOfExpiry": {
+        "type": "String",
+        "label": "Date of expiry"
+      }
+    }
+  }
+}

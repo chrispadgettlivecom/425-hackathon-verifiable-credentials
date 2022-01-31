@@ -1,0 +1,36 @@
+﻿body {
+    background-image: url(https://zamundavcst.blob.core.windows.net/images/vaxpass-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.card {
+    min-height: 510px;
+}
+
+.card-body img {
+    margin-bottom: 0.75rem !important;
+}
+
+.card-body button {
+    margin-bottom: 0.75rem !important;
+}
+
+#qr-code > img {
+    margin: 0 auto;
+}
+
+#message,
+#verification-code {
+    margin-bottom: 0.75rem !important;
+}
